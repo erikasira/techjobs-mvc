@@ -14,7 +14,7 @@ import java.util.HashMap;
  */
 @Controller
 @RequestMapping(value = "list")
-public class ListController {
+public class ListController extends TechJobsController{
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
@@ -58,7 +58,8 @@ public class ListController {
 
         ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(column, value);
         model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
-        model.addAttribute("jobs", jobs);
+        model.addAttribute("listItems", jobs);
+        model.addAttribute("column", columnChoices);
 
         return "list-jobs";
     }
